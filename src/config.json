@@ -1,0 +1,129 @@
+{
+  "//": "Configuration for a Tiny Tapeout micro tile container on sky130A:",
+  "//": "a 1x1 project (161.00 x 111.52 um) holding four 70.38 x 51.68 um micro tiles.",
+
+  "PL_TARGET_DENSITY_PCT": 60,
+
+  "//": "CLOCK_PERIOD - Increase this in case you are getting setup time violations.",
+  "//": "The value is in nanoseconds, so 20ns == 50MHz.",
+  "CLOCK_PERIOD": 20,
+
+  "//": "Hold slack margin - Increase them in case you are getting hold violations.",
+  "PL_RESIZER_HOLD_SLACK_MARGIN": 0.1,
+  "GRT_RESIZER_HOLD_SLACK_MARGIN": 0.05,
+
+  "//": "RUN_LINTER, LINTER_INCLUDE_PDK_MODELS - Disabling the linter is not recommended!",
+  "RUN_LINTER": 1,
+  "LINTER_INCLUDE_PDK_MODELS": 1,
+
+  "CLOCK_PORT": "clk",
+
+  "//": "The micro tiles sit in the four corners of the tile, with their signal pins facing a",
+  "//": "20.24 um wide channel in the middle (the right column is mirrored). Their left, right and",
+  "//": "bottom margins overlap the margins of the container. The mux logic goes in the channel",
+  "//": "and in the row above the micro tiles, below the pins of the container.",
+  "MACROS": {
+    "tt_um_micro_test": {
+      "instances": {
+        "proj1": { "location": [0, 0], "orientation": "N" }
+      },
+      "gds": ["dir::../macros/tt_um_micro_test.gds"],
+      "lef": ["dir::../macros/tt_um_micro_test.lef"],
+      "nl": ["dir::../macros/tt_um_micro_test.v"],
+      "pnl": ["dir::../macros/tt_um_micro_test.pnl.v"]
+    },
+    "tt_um_micro_proj2": {
+      "instances": {
+        "proj2": { "location": [90.62, 0], "orientation": "FN" }
+      },
+      "gds": ["dir::../macros/tt_um_micro_proj2.gds"],
+      "lef": ["dir::../macros/tt_um_micro_proj2.lef"],
+      "nl": ["dir::../macros/tt_um_micro_proj2.v"],
+      "pnl": ["dir::../macros/tt_um_micro_proj2.pnl.v"]
+    },
+    "tt_um_micro_proj3": {
+      "instances": {
+        "proj3": { "location": [0, 51.68], "orientation": "N" }
+      },
+      "gds": ["dir::../macros/tt_um_micro_proj3.gds"],
+      "lef": ["dir::../macros/tt_um_micro_proj3.lef"],
+      "nl": ["dir::../macros/tt_um_micro_proj3.v"],
+      "pnl": ["dir::../macros/tt_um_micro_proj3.pnl.v"]
+    },
+    "tt_um_micro_proj4": {
+      "instances": {
+        "proj4": { "location": [90.62, 51.68], "orientation": "FN" }
+      },
+      "gds": ["dir::../macros/tt_um_micro_proj4.gds"],
+      "lef": ["dir::../macros/tt_um_micro_proj4.lef"],
+      "nl": ["dir::../macros/tt_um_micro_proj4.v"],
+      "pnl": ["dir::../macros/tt_um_micro_proj4.pnl.v"]
+    }
+  },
+
+  "//": "Keep the container's standard cells (and their met1 rails) clear of the micro tiles.",
+  "//": "The vertical halo also removes the row right above the micro tiles.",
+  "FP_MACRO_HORIZONTAL_HALO": 1.84,
+  "FP_MACRO_VERTICAL_HALO": 1,
+  "PDN_HORIZONTAL_HALO": 0.92,
+  "PDN_VERTICAL_HALO": 0.5,
+
+  "//": "Power: the micro tiles have horizontal met3 power stripes. The container's vertical met4",
+  "//": "stripes run over the micro tiles; setting PDN_HORIZONTAL_LAYER to met3 makes the macro",
+  "//": "grid add via3 arrays wherever a met4 stripe crosses a met3 stripe of the same net.",
+  "//": "(The container itself has no horizontal stripes: FP_PDN_MULTILAYER is off.)",
+  "PDN_HORIZONTAL_LAYER": "met3",
+  "PDN_MACRO_CONNECTIONS": ["proj[1-4] VPWR VGND VPWR VGND"],
+
+  "//": "Vertical met4 stripes: VPWR at x = 10.12, 32.20, ... 142.60 and VGND at x = 21.16, 43.24,",
+  "//": "... 153.64. Every micro tile gets three stripes of each net, and the channel between them",
+  "//": "one of each. The stripes sit halfway between the met4 pins at the top of the tile.",
+  "FP_PDN_VPITCH": 22.08,
+  "FP_PDN_VWIDTH": 1.6,
+  "FP_PDN_VOFFSET": 7.36,
+  "FP_PDN_VSPACING": 9.44,
+
+  "//": "The micro tiles own met1, met2 and met3 inside their area, except for the 1 um strip",
+  "//": "along the channel where their signal pins are. met4 over the micro tiles stays available.",
+  "ROUTING_OBSTRUCTIONS": [
+    "met1 0 0 69.38 103.36",
+    "met2 0 0 69.38 103.36",
+    "met3 0 0 69.38 103.36",
+    "met1 91.62 0 161 103.36",
+    "met2 91.62 0 161 103.36",
+    "met3 91.62 0 161 103.36"
+  ],
+
+  "//": "Save some time",
+  "RUN_KLAYOUT_XOR": 0,
+  "RUN_KLAYOUT_DRC": 0,
+
+  "//": "Don't put clock buffers on the outputs",
+  "DESIGN_REPAIR_BUFFER_OUTPUT_PORTS": 0,
+
+  "//": "Reduce wasted space",
+  "TOP_MARGIN_MULT": 1,
+  "BOTTOM_MARGIN_MULT": 1,
+  "LEFT_MARGIN_MULT": 6,
+  "RIGHT_MARGIN_MULT": 6,
+
+  "//": "Absolute die size",
+  "FP_SIZING": "absolute",
+
+  "GRT_ALLOW_CONGESTION": 1,
+
+  "FP_IO_HLENGTH": 2,
+  "FP_IO_VLENGTH": 2,
+
+  "//": "Clock",
+  "RUN_CTS": 1,
+
+  "//": "Don't generate power rings",
+  "FP_PDN_MULTILAYER": 0,
+
+  "//": "MAGIC_DEF_LABELS may cause issues with LVS",
+  "MAGIC_DEF_LABELS": 0,
+
+  "//": "Only export pin area in LEF (without any connected nets)",
+  "MAGIC_WRITE_LEF_PINONLY": 1
+}

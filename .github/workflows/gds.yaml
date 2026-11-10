@@ -1,0 +1,57 @@
+name: gds
+
+on:
+  push:
+  workflow_dispatch:
+
+# The container is an ordinary 1x1 project: it is built and checked by the stock actions
+jobs:
+  gds:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Build GDS
+        uses: TinyTapeout/tt-gds-action@ttsky26d
+        with:
+          pdk: sky130A
+
+      # LVS treats the micro tiles as black boxes, so check on the final GDS that the power
+      # pins of the container really reach the standard cell rails of every micro tile
+      - name: Check micro tile power connectivity
+        run: >
+          python test/trace_power.py
+          runs/wokwi/final/gds/tt_um_micro_tiles_container.gds
+          runs/wokwi/final/lef/tt_um_micro_tiles_container.lef
+          tt_um_micro_tiles_container tt_um_micro_
+
+  precheck:
+    needs: gds
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Run Tiny Tapeout Precheck
+        uses: TinyTapeout/tt-gds-action/precheck@ttsky26d
+
+  gl_test:
+    needs: gds
+    runs-on: ubuntu-24.04
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: GL test
+        uses: TinyTapeout/tt-gds-action/gl_test@ttsky26d
+
+  viewer:
+    needs: gds
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
+    steps:
+      - uses: TinyTapeout/tt-gds-action/viewer@ttsky26d
