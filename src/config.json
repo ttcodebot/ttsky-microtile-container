@@ -94,6 +94,11 @@
     "met3 91.62 0 161 103.36"
   ],
 
+  "//": "LVS on a layout extracted from the final GDS, transistors of the micro tiles included,",
+  "//": "against the netlist of the container plus the powered netlists of the micro tiles.",
+  "MAGIC_EXT_USE_GDS": true,
+  "LVS_INCLUDE_MARCO_NETLISTS": true,
+
   "//": "Save some time",
   "RUN_KLAYOUT_XOR": 0,
   "RUN_KLAYOUT_DRC": 0,
