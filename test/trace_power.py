@@ -7,8 +7,9 @@ connection independently and without any abstraction. It flattens the layout, me
 metal and via layer, and floods the VPWR and VGND nets from the container's met4 power pins
 (taken from its LEF) down through via3 / met3 / via2 / met2 / via / met1.
 
-It fails unless, in every micro tile, every standard cell rail (met1) is reached by exactly
-one of the two nets, and both nets get there through via3 cuts inside the micro tile.
+It fails unless, in every micro tile, every standard cell rail (a met1 shape that spans the
+core of the micro tile) is reached by exactly one of the two nets, and both nets get there
+through via3 cuts inside the micro tile.
 
 Usage: trace_power.py <container gds> <container lef> <top cell> <micro tile cell prefix>
 """
@@ -104,7 +105,8 @@ for inst in top.each_inst():
     clip = pya.Region(box)
 
     def is_rail(polygon):
-        return polygon.bbox().width() > box.width() // 2
+        # A rail spans the whole core of the micro tile; long signal wires do not
+        return polygon.bbox().width() > box.width() * 0.85
 
     rails = [p for p in (regions[RAIL_METAL] & clip).each() if is_rail(p)]
     reached = {}
