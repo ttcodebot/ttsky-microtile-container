@@ -5,7 +5,7 @@ import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import ClockCycles
 
-MICRO_TILES = 4
+MICRO_TILES = 3  # the fourth one is a dense capacity test design, not the counter
 
 
 async def start(dut):
