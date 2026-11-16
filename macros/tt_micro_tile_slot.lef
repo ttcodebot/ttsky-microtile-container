@@ -1,0 +1,283 @@
+VERSION 5.7 ;
+  NOWIREEXTENSIONATPIN ON ;
+  DIVIDERCHAR "/" ;
+  BUSBITCHARS "[]" ;
+MACRO tt_micro_tile_slot
+  CLASS BLOCK ;
+  FOREIGN tt_micro_tile_slot ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 70.380 BY 51.680 ;
+  PIN VGND
+    DIRECTION INOUT ;
+    USE GROUND ;
+    PORT
+      LAYER met3 ;
+        RECT 2.760 19.900 67.620 20.900 ;
+    END
+    PORT
+      LAYER met3 ;
+        RECT 2.760 41.660 67.620 42.660 ;
+    END
+  END VGND
+  PIN VPWR
+    DIRECTION INOUT ;
+    USE POWER ;
+    PORT
+      LAYER met3 ;
+        RECT 2.760 9.020 67.620 10.020 ;
+    END
+    PORT
+      LAYER met3 ;
+        RECT 2.760 30.780 67.620 31.780 ;
+    END
+  END VPWR
+  PIN clk
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.126000 ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 2.870 70.380 3.250 ;
+    END
+  END clk
+  PIN rst_n
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.126000 ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 5.590 70.380 5.970 ;
+    END
+  END rst_n
+  PIN ui_in[0]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.126000 ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 8.310 70.380 8.690 ;
+    END
+  END ui_in[0]
+  PIN ui_in[1]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.126000 ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 11.030 70.380 11.410 ;
+    END
+  END ui_in[1]
+  PIN ui_in[2]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.126000 ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 13.750 70.380 14.130 ;
+    END
+  END ui_in[2]
+  PIN ui_in[3]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.126000 ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 16.470 70.380 16.850 ;
+    END
+  END ui_in[3]
+  PIN ui_in[4]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.126000 ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 19.190 70.380 19.570 ;
+    END
+  END ui_in[4]
+  PIN ui_in[5]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.126000 ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 21.910 70.380 22.290 ;
+    END
+  END ui_in[5]
+  PIN ui_in[6]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.126000 ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 24.630 70.380 25.010 ;
+    END
+  END ui_in[6]
+  PIN ui_in[7]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.126000 ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 27.350 70.380 27.730 ;
+    END
+  END ui_in[7]
+  PIN uo_out[0]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 30.070 70.380 30.450 ;
+    END
+  END uo_out[0]
+  PIN uo_out[1]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 32.790 70.380 33.170 ;
+    END
+  END uo_out[1]
+  PIN uo_out[2]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 35.510 70.380 35.890 ;
+    END
+  END uo_out[2]
+  PIN uo_out[3]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 38.230 70.380 38.610 ;
+    END
+  END uo_out[3]
+  PIN uo_out[4]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 40.950 70.380 41.330 ;
+    END
+  END uo_out[4]
+  PIN uo_out[5]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 43.670 70.380 44.050 ;
+    END
+  END uo_out[5]
+  PIN uo_out[6]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 46.390 70.380 46.770 ;
+    END
+  END uo_out[6]
+  PIN uo_out[7]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 69.380 49.110 70.380 49.490 ;
+    END
+  END uo_out[7]
+  OBS
+      LAYER li1 ;
+        RECT 0.000 0.000 69.380 51.680 ;
+      LAYER met1 ;
+        RECT 0.000 0.000 69.380 51.680 ;
+      LAYER met2 ;
+        RECT 0.000 0.000 69.380 2.460 ;
+        RECT 0.000 2.460 70.380 3.660 ;
+        RECT 0.000 3.660 69.380 5.180 ;
+        RECT 0.000 5.180 70.380 6.380 ;
+        RECT 0.000 6.380 69.380 7.900 ;
+        RECT 0.000 7.900 70.380 9.100 ;
+        RECT 0.000 9.100 69.380 10.620 ;
+        RECT 0.000 10.620 70.380 11.820 ;
+        RECT 0.000 11.820 69.380 13.340 ;
+        RECT 0.000 13.340 70.380 14.540 ;
+        RECT 0.000 14.540 69.380 16.060 ;
+        RECT 0.000 16.060 70.380 17.260 ;
+        RECT 0.000 17.260 69.380 18.780 ;
+        RECT 0.000 18.780 70.380 19.980 ;
+        RECT 0.000 19.980 69.380 21.500 ;
+        RECT 0.000 21.500 70.380 22.700 ;
+        RECT 0.000 22.700 69.380 24.220 ;
+        RECT 0.000 24.220 70.380 25.420 ;
+        RECT 0.000 25.420 69.380 26.940 ;
+        RECT 0.000 26.940 70.380 28.140 ;
+        RECT 0.000 28.140 69.380 29.660 ;
+        RECT 0.000 29.660 70.380 30.860 ;
+        RECT 0.000 30.860 69.380 32.380 ;
+        RECT 0.000 32.380 70.380 33.580 ;
+        RECT 0.000 33.580 69.380 35.100 ;
+        RECT 0.000 35.100 70.380 36.300 ;
+        RECT 0.000 36.300 69.380 37.820 ;
+        RECT 0.000 37.820 70.380 39.020 ;
+        RECT 0.000 39.020 69.380 40.540 ;
+        RECT 0.000 40.540 70.380 41.740 ;
+        RECT 0.000 41.740 69.380 43.260 ;
+        RECT 0.000 43.260 70.380 44.460 ;
+        RECT 0.000 44.460 69.380 45.980 ;
+        RECT 0.000 45.980 70.380 47.180 ;
+        RECT 0.000 47.180 69.380 48.700 ;
+        RECT 0.000 48.700 70.380 49.900 ;
+        RECT 0.000 49.900 69.380 51.680 ;
+      LAYER met3 ;
+        RECT 0.000 0.000 70.380 2.460 ;
+        RECT 0.000 2.460 69.380 3.660 ;
+        RECT 0.000 3.660 70.380 5.180 ;
+        RECT 0.000 5.180 69.380 6.380 ;
+        RECT 0.000 6.380 70.380 7.900 ;
+        RECT 0.000 7.900 69.380 9.020 ;
+        RECT 67.620 9.020 69.380 9.100 ;
+        RECT 0.000 9.020 2.760 10.020 ;
+        RECT 67.620 9.100 70.380 10.020 ;
+        RECT 0.000 10.020 70.380 10.620 ;
+        RECT 0.000 10.620 69.380 11.820 ;
+        RECT 0.000 11.820 70.380 13.340 ;
+        RECT 0.000 13.340 69.380 14.540 ;
+        RECT 0.000 14.540 70.380 16.060 ;
+        RECT 0.000 16.060 69.380 17.260 ;
+        RECT 0.000 17.260 70.380 18.780 ;
+        RECT 0.000 18.780 69.380 19.900 ;
+        RECT 67.620 19.900 69.380 19.980 ;
+        RECT 0.000 19.900 2.760 20.900 ;
+        RECT 67.620 19.980 70.380 20.900 ;
+        RECT 0.000 20.900 70.380 21.500 ;
+        RECT 0.000 21.500 69.380 22.700 ;
+        RECT 0.000 22.700 70.380 24.220 ;
+        RECT 0.000 24.220 69.380 25.420 ;
+        RECT 0.000 25.420 70.380 26.940 ;
+        RECT 0.000 26.940 69.380 28.140 ;
+        RECT 0.000 28.140 70.380 29.660 ;
+        RECT 0.000 29.660 69.380 30.780 ;
+        RECT 67.620 30.780 69.380 30.860 ;
+        RECT 0.000 30.780 2.760 31.780 ;
+        RECT 67.620 30.860 70.380 31.780 ;
+        RECT 0.000 31.780 70.380 32.380 ;
+        RECT 0.000 32.380 69.380 33.580 ;
+        RECT 0.000 33.580 70.380 35.100 ;
+        RECT 0.000 35.100 69.380 36.300 ;
+        RECT 0.000 36.300 70.380 37.820 ;
+        RECT 0.000 37.820 69.380 39.020 ;
+        RECT 0.000 39.020 70.380 40.540 ;
+        RECT 0.000 40.540 69.380 41.660 ;
+        RECT 67.620 41.660 69.380 41.740 ;
+        RECT 0.000 41.660 2.760 42.660 ;
+        RECT 67.620 41.740 70.380 42.660 ;
+        RECT 0.000 42.660 70.380 43.260 ;
+        RECT 0.000 43.260 69.380 44.460 ;
+        RECT 0.000 44.460 70.380 45.980 ;
+        RECT 0.000 45.980 69.380 47.180 ;
+        RECT 0.000 47.180 70.380 48.700 ;
+        RECT 0.000 48.700 69.380 49.900 ;
+        RECT 0.000 49.900 70.380 51.680 ;
+  END
+END tt_micro_tile_slot
+END LIBRARY

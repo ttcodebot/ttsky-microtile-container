@@ -5,9 +5,10 @@
 
 `default_nettype none
 
-// Container for four micro tile projects. uio_in[1:0] selects the active one:
+// Generic container for four micro tile projects. uio_in[1:0] selects the active one:
 // only the selected micro tile gets clk, rst_n and ui_in, and drives uo_out.
-module tt_um_micro_tiles_container (
+// The slots are placeholders: micro_container.py swaps them for real micro tiles.
+module tt_um_micro_container (
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
     input  wire [7:0] uio_in,   // IOs: Input path
@@ -25,28 +26,28 @@ module tt_um_micro_tiles_container (
   assign uio_out = 0;
   assign uio_oe  = 0;
 
-  tt_um_micro_test proj1 (
+  tt_micro_tile_slot proj1 (
       .rst_n (sel == 0 ? rst_n : 1'b0),
       .clk   (sel == 0 ? clk : 1'b0),
       .ui_in (sel == 0 ? ui_in : 8'h00),
       .uo_out(uo_out_proj[0])
   );
 
-  tt_um_micro_proj2 proj2 (
+  tt_micro_tile_slot proj2 (
       .rst_n (sel == 1 ? rst_n : 1'b0),
       .clk   (sel == 1 ? clk : 1'b0),
       .ui_in (sel == 1 ? ui_in : 8'h00),
       .uo_out(uo_out_proj[1])
   );
 
-  tt_um_micro_proj3 proj3 (
+  tt_micro_tile_slot proj3 (
       .rst_n (sel == 2 ? rst_n : 1'b0),
       .clk   (sel == 2 ? clk : 1'b0),
       .ui_in (sel == 2 ? ui_in : 8'h00),
       .uo_out(uo_out_proj[2])
   );
 
-  tt_um_micro_proj4 proj4 (
+  tt_micro_tile_slot proj4 (
       .rst_n (sel == 3 ? rst_n : 1'b0),
       .clk   (sel == 3 ? clk : 1'b0),
       .ui_in (sel == 3 ? ui_in : 8'h00),
