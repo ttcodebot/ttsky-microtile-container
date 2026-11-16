@@ -27,7 +27,7 @@ module tb ();
   wire VGND = 1'b0;
 `endif
 
-  tt_um_micro_tiles_container user_project (
+  `TOP_MODULE user_project (
 
       // Include power ports for the Gate Level test:
 `ifdef GL_TEST

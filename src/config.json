@@ -25,39 +25,83 @@
   "MACROS": {
     "tt_um_micro_test": {
       "instances": {
-        "proj1": { "location": [0, 0], "orientation": "N" }
+        "proj1": {
+          "location": [
+            0,
+            0
+          ],
+          "orientation": "N"
+        }
       },
-      "gds": ["dir::../macros/tt_um_micro_test.gds"],
-      "lef": ["dir::../macros/tt_um_micro_test.lef"],
-      "nl": ["dir::../macros/tt_um_micro_test.v"],
-      "pnl": ["dir::../macros/tt_um_micro_test.pnl.v"]
+      "gds": [
+        "dir::../macros/tt_um_micro_test.gds"
+      ],
+      "lef": [
+        "dir::../macros/tt_um_micro_test.lef"
+      ],
+      "pnl": [
+        "dir::../macros/tt_um_micro_test.pnl.v"
+      ]
     },
-    "tt_um_micro_proj2": {
+    "tt_um_micro_dense": {
       "instances": {
-        "proj2": { "location": [90.62, 0], "orientation": "FN" }
+        "proj2": {
+          "location": [
+            90.62,
+            0
+          ],
+          "orientation": "FN"
+        }
       },
-      "gds": ["dir::../macros/tt_um_micro_proj2.gds"],
-      "lef": ["dir::../macros/tt_um_micro_proj2.lef"],
-      "nl": ["dir::../macros/tt_um_micro_proj2.v"],
-      "pnl": ["dir::../macros/tt_um_micro_proj2.pnl.v"]
+      "gds": [
+        "dir::../macros/tt_um_micro_dense.gds"
+      ],
+      "lef": [
+        "dir::../macros/tt_um_micro_dense.lef"
+      ],
+      "pnl": [
+        "dir::../macros/tt_um_micro_dense.pnl.v"
+      ]
     },
-    "tt_um_micro_proj3": {
+    "tt_um_wokwi_463380823859050497": {
       "instances": {
-        "proj3": { "location": [0, 51.68], "orientation": "N" }
+        "proj3": {
+          "location": [
+            0,
+            51.68
+          ],
+          "orientation": "N"
+        }
       },
-      "gds": ["dir::../macros/tt_um_micro_proj3.gds"],
-      "lef": ["dir::../macros/tt_um_micro_proj3.lef"],
-      "nl": ["dir::../macros/tt_um_micro_proj3.v"],
-      "pnl": ["dir::../macros/tt_um_micro_proj3.pnl.v"]
+      "gds": [
+        "dir::../macros/tt_um_wokwi_463380823859050497.gds"
+      ],
+      "lef": [
+        "dir::../macros/tt_um_wokwi_463380823859050497.lef"
+      ],
+      "pnl": [
+        "dir::../macros/tt_um_wokwi_463380823859050497.pnl.v"
+      ]
     },
-    "tt_um_micro_proj4": {
+    "tt_um_wokwi_459285910800527361": {
       "instances": {
-        "proj4": { "location": [90.62, 51.68], "orientation": "FN" }
+        "proj4": {
+          "location": [
+            90.62,
+            51.68
+          ],
+          "orientation": "FN"
+        }
       },
-      "gds": ["dir::../macros/tt_um_micro_proj4.gds"],
-      "lef": ["dir::../macros/tt_um_micro_proj4.lef"],
-      "nl": ["dir::../macros/tt_um_micro_proj4.v"],
-      "pnl": ["dir::../macros/tt_um_micro_proj4.pnl.v"]
+      "gds": [
+        "dir::../macros/tt_um_wokwi_459285910800527361.gds"
+      ],
+      "lef": [
+        "dir::../macros/tt_um_wokwi_459285910800527361.lef"
+      ],
+      "pnl": [
+        "dir::../macros/tt_um_wokwi_459285910800527361.pnl.v"
+      ]
     }
   },
 

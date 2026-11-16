@@ -15,7 +15,7 @@ jobs:
           submodules: recursive
 
       - name: Build GDS
-        uses: TinyTapeout/tt-gds-action@ttsky26d
+        uses: TinyTapeout/tt-gds-action@ttsky26e
         with:
           pdk: sky130A
 
@@ -24,16 +24,16 @@ jobs:
       - name: Check micro tile power connectivity
         run: >
           python test/trace_power.py
-          runs/wokwi/final/gds/tt_um_micro_tiles_container.gds
-          runs/wokwi/final/lef/tt_um_micro_tiles_container.lef
-          tt_um_micro_tiles_container tt_um_micro_
+          runs/wokwi/final/gds/tt_um_micro_tiles_group_1.gds
+          runs/wokwi/final/lef/tt_um_micro_tiles_group_1.lef
+          tt_um_micro_tiles_group_1 tt_um_
 
   precheck:
     needs: gds
     runs-on: ubuntu-24.04
     steps:
       - name: Run Tiny Tapeout Precheck
-        uses: TinyTapeout/tt-gds-action/precheck@ttsky26d
+        uses: TinyTapeout/tt-gds-action/precheck@ttsky26e
 
   gl_test:
     needs: gds
@@ -45,7 +45,7 @@ jobs:
           submodules: recursive
 
       - name: GL test
-        uses: TinyTapeout/tt-gds-action/gl_test@ttsky26d
+        uses: TinyTapeout/tt-gds-action/gl_test@ttsky26e
 
   viewer:
     needs: gds
@@ -54,4 +54,4 @@ jobs:
       pages: write # to deploy to Pages
       id-token: write # to verify the deployment originates from an appropriate source
     steps:
-      - uses: TinyTapeout/tt-gds-action/viewer@ttsky26d
+      - uses: TinyTapeout/tt-gds-action/viewer@ttsky26e

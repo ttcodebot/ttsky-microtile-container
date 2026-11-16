@@ -1,0 +1,14 @@
+# Input of assemble.py: the micro tiles of this container, in select order (uio_in[1:0]).
+# `run` is the id of the gds workflow run that built the micro tile.
+top_module: tt_um_micro_tiles_group_1
+title: "Micro tiles group 1"
+shuttle: ttsky26e
+micro_tiles:
+  - repo: ttcodebot/ttsky-microtile # branch mt-counter
+    run: 43889108171
+  - repo: ttcodebot/ttsky-microtile # branch mt-dense
+    run: 43889138650
+  - repo: ttcodebot/ttsky-microtile # branch mt-wokwi-463380823859050497
+    run: 43889144455
+  - repo: ttcodebot/ttsky-microtile # branch mt-wokwi-459285910800527361
+    run: 43889149118
