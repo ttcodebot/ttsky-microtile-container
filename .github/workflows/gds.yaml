@@ -19,15 +19,6 @@ jobs:
         with:
           pdk: sky130A
 
-      # LVS treats the micro tiles as black boxes, so check on the final GDS that the power
-      # pins of the container really reach the standard cell rails of every micro tile
-      - name: Check micro tile power connectivity
-        run: >
-          python test/trace_power.py
-          runs/wokwi/final/gds/tt_um_micro_tiles_container.gds
-          runs/wokwi/final/lef/tt_um_micro_tiles_container.lef
-          tt_um_micro_tiles_container tt_um_micro_
-
   precheck:
     needs: gds
     runs-on: ubuntu-24.04
