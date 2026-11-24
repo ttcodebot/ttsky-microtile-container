@@ -1,0 +1,14 @@
+top_module: tt_um_micro_tiles_uio2
+title: "Micro tiles with 2 uio pins"
+shuttle: ttsky26e
+pdk: sky130A
+slots: [[0, 0], [90.62, 0], [0, 51.68], [90.62, 51.68]]
+micro_tiles:
+  - repo: ttcodebot/ttsky-microtile
+    run: 45468683479
+  - repo: ttcodebot/ttsky-microtile
+    run: 45468689175
+  - repo: ttcodebot/ttsky-microtile
+    run: 45468694911
+  - repo: ttcodebot/ttsky-microtile
+    run: 45468699457

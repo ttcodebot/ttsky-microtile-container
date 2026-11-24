@@ -1,0 +1,25 @@
+{
+  "n": 2,
+  "kind": "bidir",
+  "bidir": true,
+  "n_in": 2,
+  "n_out": 2,
+  "k": [
+    0,
+    165,
+    60,
+    90
+  ],
+  "macros": [
+    "tt_um_micro_uio2_cnt",
+    "tt_um_micro_uio2_dense",
+    "tt_um_micro_uio2_b",
+    "tt_um_micro_uio2_c"
+  ],
+  "from": [
+    "ttcodebot/ttsky-microtile run 45468683479",
+    "ttcodebot/ttsky-microtile run 45468689175",
+    "ttcodebot/ttsky-microtile run 45468694911",
+    "ttcodebot/ttsky-microtile run 45468699457"
+  ]
+}
