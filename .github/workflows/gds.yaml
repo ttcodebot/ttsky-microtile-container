@@ -24,9 +24,9 @@ jobs:
       - name: Check micro tile power connectivity
         run: >
           python test/trace_power.py
-          runs/wokwi/final/gds/tt_um_micro_tiles_group_1.gds
-          runs/wokwi/final/lef/tt_um_micro_tiles_group_1.lef
-          tt_um_micro_tiles_group_1 tt_um_
+          runs/wokwi/final/gds/tt_um_micro_tiles_r2d0full.gds
+          runs/wokwi/final/lef/tt_um_micro_tiles_r2d0full.lef
+          tt_um_micro_tiles_r2d0full tt_um_
 
   precheck:
     needs: gds
