@@ -1,0 +1,15 @@
+top_module: tt_um_micro_tiles_r2mixfull
+title: "Pin plan r2, mix container"
+shuttle: ttsky26e
+pdk: sky130A
+slots: [[0, 0], [90.62, 0], [0, 51.68], [90.62, 51.68]]
+config: {MAGIC_EXT_USE_GDS: true, LVS_INCLUDE_MARCO_NETLISTS: true}
+micro_tiles:
+  - repo: ttcodebot/ttsky-microtile   # r2-cnt
+    run: 45479682388
+  - repo: ttcodebot/ttsky-microtile   # r2-d0a
+    run: 45479681769
+  - repo: ttcodebot/ttsky-microtile   # r2-dense
+    run: 45479683146
+  - repo: ttcodebot/ttsky-microtile   # r2-d0b
+    run: 45479684831
