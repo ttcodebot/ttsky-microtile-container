@@ -23,7 +23,7 @@
   "//": "bottom margins overlap the margins of the container. The mux logic goes in the channel",
   "//": "and in the row above the micro tiles, below the pins of the container.",
   "MACROS": {
-    "tt_um_micro_test": {
+    "tt_um_micro_uio6_cnt": {
       "instances": {
         "proj1": {
           "location": [
@@ -34,16 +34,16 @@
         }
       },
       "gds": [
-        "dir::../macros/tt_um_micro_test.gds"
+        "dir::../macros/tt_um_micro_uio6_cnt.gds"
       ],
       "lef": [
-        "dir::../macros/tt_um_micro_test.lef"
+        "dir::../macros/tt_um_micro_uio6_cnt.lef"
       ],
       "pnl": [
-        "dir::../macros/tt_um_micro_test.pnl.v"
+        "dir::../macros/tt_um_micro_uio6_cnt.pnl.v"
       ]
     },
-    "tt_um_micro_dense": {
+    "tt_um_micro_uio6_dense": {
       "instances": {
         "proj2": {
           "location": [
@@ -54,16 +54,16 @@
         }
       },
       "gds": [
-        "dir::../macros/tt_um_micro_dense.gds"
+        "dir::../macros/tt_um_micro_uio6_dense.gds"
       ],
       "lef": [
-        "dir::../macros/tt_um_micro_dense.lef"
+        "dir::../macros/tt_um_micro_uio6_dense.lef"
       ],
       "pnl": [
-        "dir::../macros/tt_um_micro_dense.pnl.v"
+        "dir::../macros/tt_um_micro_uio6_dense.pnl.v"
       ]
     },
-    "tt_um_wokwi_463380823859050497": {
+    "tt_um_micro_uio6_b": {
       "instances": {
         "proj3": {
           "location": [
@@ -74,16 +74,16 @@
         }
       },
       "gds": [
-        "dir::../macros/tt_um_wokwi_463380823859050497.gds"
+        "dir::../macros/tt_um_micro_uio6_b.gds"
       ],
       "lef": [
-        "dir::../macros/tt_um_wokwi_463380823859050497.lef"
+        "dir::../macros/tt_um_micro_uio6_b.lef"
       ],
       "pnl": [
-        "dir::../macros/tt_um_wokwi_463380823859050497.pnl.v"
+        "dir::../macros/tt_um_micro_uio6_b.pnl.v"
       ]
     },
-    "tt_um_wokwi_459285910800527361": {
+    "tt_um_micro_uio6_c": {
       "instances": {
         "proj4": {
           "location": [
@@ -94,22 +94,22 @@
         }
       },
       "gds": [
-        "dir::../macros/tt_um_wokwi_459285910800527361.gds"
+        "dir::../macros/tt_um_micro_uio6_c.gds"
       ],
       "lef": [
-        "dir::../macros/tt_um_wokwi_459285910800527361.lef"
+        "dir::../macros/tt_um_micro_uio6_c.lef"
       ],
       "pnl": [
-        "dir::../macros/tt_um_wokwi_459285910800527361.pnl.v"
+        "dir::../macros/tt_um_micro_uio6_c.pnl.v"
       ]
     }
   },
 
   "//": "Keep the container's standard cells (and their met1 rails) clear of the micro tiles.",
   "//": "The vertical halo also removes the row right above the micro tiles.",
-  "FP_MACRO_HORIZONTAL_HALO": 1.84,
+  "FP_MACRO_HORIZONTAL_HALO": 0.92,
   "FP_MACRO_VERTICAL_HALO": 1,
-  "PDN_HORIZONTAL_HALO": 0.92,
+  "PDN_HORIZONTAL_HALO": 0.46,
   "PDN_VERTICAL_HALO": 0.5,
 
   "//": "Power: the micro tiles have horizontal met3 power stripes. The container's vertical met4",
