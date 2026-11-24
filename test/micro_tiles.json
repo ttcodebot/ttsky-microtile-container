@@ -1,0 +1,36 @@
+{
+  "n": 6,
+  "kind": "bidir",
+  "bidir": true,
+  "n_in": 6,
+  "n_out": 6,
+  "connect_uio": true,
+  "gate": [
+    "ui_in",
+    "uio_in"
+  ],
+  "k": [
+    0,
+    60,
+    165,
+    90
+  ],
+  "day0": [
+    false,
+    true,
+    false,
+    true
+  ],
+  "macros": [
+    "tt_um_micro_w151_cnt",
+    "tt_um_micro_w151_d0a",
+    "tt_um_micro_w151_dense",
+    "tt_um_micro_w151_d0b"
+  ],
+  "from": [
+    "ttcodebot/ttsky-microtile run 45477440538",
+    "ttcodebot/ttsky-microtile run 45477116999",
+    "ttcodebot/ttsky-microtile run 45477117036",
+    "ttcodebot/ttsky-microtile run 45477118405"
+  ]
+}
