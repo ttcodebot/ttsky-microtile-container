@@ -1,0 +1,16 @@
+top_module: tt_um_micro_tiles_r6d0
+title: "Day-0 container: micro tiles with reserved uio pins"
+shuttle: ttsky26e
+pdk: sky130A
+slots: [[0, 0], [90.62, 0], [0, 51.68], [90.62, 51.68]]
+connect_uio: false
+gate: [ui_in]
+micro_tiles:
+  - repo: ttcodebot/ttsky-microtile   # r6-d0b, day-0 counter
+    run: 45472148830
+  - repo: ttcodebot/ttsky-microtile   # r6-d0a, day-0 synthetic s4e5
+    run: 45472147917
+  - repo: ttcodebot/ttsky-microtile   # r6-d0c, day-0 synthetic s4e0
+    run: 45472147847
+  - repo: ttcodebot/ttsky-microtile   # r6-d0d, day-0 counter
+    run: 45472148851
