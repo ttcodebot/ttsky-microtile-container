@@ -1,0 +1,36 @@
+{
+  "n": 6,
+  "kind": "split",
+  "bidir": false,
+  "n_in": 3,
+  "n_out": 3,
+  "connect_uio": true,
+  "gate": [
+    "ui_in",
+    "uio_in"
+  ],
+  "k": [
+    0,
+    165,
+    60,
+    90
+  ],
+  "day0": [
+    false,
+    false,
+    false,
+    false
+  ],
+  "macros": [
+    "tt_um_micro_i3o3_cnt",
+    "tt_um_micro_i3o3_dense",
+    "tt_um_micro_i3o3_b",
+    "tt_um_micro_i3o3_c"
+  ],
+  "from": [
+    "ttcodebot/ttsky-microtile run 45470556661",
+    "ttcodebot/ttsky-microtile run 45470556769",
+    "ttcodebot/ttsky-microtile run 45470556768",
+    "ttcodebot/ttsky-microtile run 45470559905"
+  ]
+}

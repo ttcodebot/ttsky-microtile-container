@@ -1,0 +1,14 @@
+top_module: tt_um_micro_tiles_i3o3
+title: "Micro tiles with 3 uio inputs and 3 uio outputs"
+shuttle: ttsky26e
+pdk: sky130A
+slots: [[0, 0], [90.62, 0], [0, 51.68], [90.62, 51.68]]
+micro_tiles:
+  - repo: ttcodebot/ttsky-microtile
+    run: 45470556661
+  - repo: ttcodebot/ttsky-microtile
+    run: 45470556769
+  - repo: ttcodebot/ttsky-microtile
+    run: 45470556768
+  - repo: ttcodebot/ttsky-microtile
+    run: 45470559905
