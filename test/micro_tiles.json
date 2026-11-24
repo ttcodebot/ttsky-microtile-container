@@ -1,0 +1,35 @@
+{
+  "n": 6,
+  "kind": "bidir",
+  "bidir": true,
+  "n_in": 6,
+  "n_out": 6,
+  "connect_uio": false,
+  "gate": [
+    "ui_in"
+  ],
+  "k": [
+    90,
+    60,
+    105,
+    150
+  ],
+  "day0": [
+    true,
+    true,
+    true,
+    true
+  ],
+  "macros": [
+    "tt_um_micro_r6_d0b",
+    "tt_um_micro_r6_d0a",
+    "tt_um_micro_r6_d0c",
+    "tt_um_micro_r6_d0d"
+  ],
+  "from": [
+    "ttcodebot/ttsky-microtile run 45472148830",
+    "ttcodebot/ttsky-microtile run 45472147917",
+    "ttcodebot/ttsky-microtile run 45472147847",
+    "ttcodebot/ttsky-microtile run 45472148851"
+  ]
+}
