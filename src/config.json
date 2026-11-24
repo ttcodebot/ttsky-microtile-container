@@ -23,7 +23,7 @@
   "//": "bottom margins overlap the margins of the container. The mux logic goes in the channel",
   "//": "and in the row above the micro tiles, below the pins of the container.",
   "MACROS": {
-    "tt_um_micro_test": {
+    "tt_um_micro_r2_cnt": {
       "instances": {
         "proj1": {
           "location": [
@@ -34,16 +34,16 @@
         }
       },
       "gds": [
-        "dir::../macros/tt_um_micro_test.gds"
+        "dir::../macros/tt_um_micro_r2_cnt.gds"
       ],
       "lef": [
-        "dir::../macros/tt_um_micro_test.lef"
+        "dir::../macros/tt_um_micro_r2_cnt.lef"
       ],
       "pnl": [
-        "dir::../macros/tt_um_micro_test.pnl.v"
+        "dir::../macros/tt_um_micro_r2_cnt.pnl.v"
       ]
     },
-    "tt_um_micro_dense": {
+    "tt_um_micro_r2_d0a": {
       "instances": {
         "proj2": {
           "location": [
@@ -54,16 +54,16 @@
         }
       },
       "gds": [
-        "dir::../macros/tt_um_micro_dense.gds"
+        "dir::../macros/tt_um_micro_r2_d0a.gds"
       ],
       "lef": [
-        "dir::../macros/tt_um_micro_dense.lef"
+        "dir::../macros/tt_um_micro_r2_d0a.lef"
       ],
       "pnl": [
-        "dir::../macros/tt_um_micro_dense.pnl.v"
+        "dir::../macros/tt_um_micro_r2_d0a.pnl.v"
       ]
     },
-    "tt_um_wokwi_463380823859050497": {
+    "tt_um_micro_r2_dense": {
       "instances": {
         "proj3": {
           "location": [
@@ -74,16 +74,16 @@
         }
       },
       "gds": [
-        "dir::../macros/tt_um_wokwi_463380823859050497.gds"
+        "dir::../macros/tt_um_micro_r2_dense.gds"
       ],
       "lef": [
-        "dir::../macros/tt_um_wokwi_463380823859050497.lef"
+        "dir::../macros/tt_um_micro_r2_dense.lef"
       ],
       "pnl": [
-        "dir::../macros/tt_um_wokwi_463380823859050497.pnl.v"
+        "dir::../macros/tt_um_micro_r2_dense.pnl.v"
       ]
     },
-    "tt_um_wokwi_459285910800527361": {
+    "tt_um_micro_r2_d0b": {
       "instances": {
         "proj4": {
           "location": [
@@ -94,13 +94,13 @@
         }
       },
       "gds": [
-        "dir::../macros/tt_um_wokwi_459285910800527361.gds"
+        "dir::../macros/tt_um_micro_r2_d0b.gds"
       ],
       "lef": [
-        "dir::../macros/tt_um_wokwi_459285910800527361.lef"
+        "dir::../macros/tt_um_micro_r2_d0b.lef"
       ],
       "pnl": [
-        "dir::../macros/tt_um_wokwi_459285910800527361.pnl.v"
+        "dir::../macros/tt_um_micro_r2_d0b.pnl.v"
       ]
     }
   },
