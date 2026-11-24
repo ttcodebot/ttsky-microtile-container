@@ -1,0 +1,14 @@
+top_module: tt_um_micro_tiles_uio4
+title: "Micro tiles with 4 uio pins"
+shuttle: ttsky26e
+pdk: sky130A
+slots: [[0, 0], [90.62, 0], [0, 51.68], [90.62, 51.68]]
+micro_tiles:
+  - repo: ttcodebot/ttsky-microtile
+    run: 45468658197
+  - repo: ttcodebot/ttsky-microtile
+    run: 45469868146
+  - repo: ttcodebot/ttsky-microtile
+    run: 45468671119
+  - repo: ttcodebot/ttsky-microtile
+    run: 45468677801
