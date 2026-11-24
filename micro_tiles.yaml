@@ -1,0 +1,15 @@
+top_module: tt_um_micro_tiles_w149mix
+title: "uio container, 68.54 um wide micro tiles with reserved uio pins"
+shuttle: ttsky26e
+pdk: sky130A
+slots: [[0, 0], [92.46, 0], [0, 51.68], [92.46, 51.68]]
+config: {ROUTING_OBSTRUCTIONS: ["met1 0 0 67.54 103.36", "met2 0 0 67.54 103.36", "met3 0 0 67.54 103.36", "met1 93.46 0 161 103.36", "met2 93.46 0 161 103.36", "met3 93.46 0 161 103.36"]}
+micro_tiles:
+  - repo: ttcodebot/ttsky-microtile   # w149-cnt
+    run: 45477116477
+  - repo: ttcodebot/ttsky-microtile   # w149-d0a
+    run: 45477119055
+  - repo: ttcodebot/ttsky-microtile   # w149-dense
+    run: 45477116492
+  - repo: ttcodebot/ttsky-microtile   # w149-d0b
+    run: 45477117455
