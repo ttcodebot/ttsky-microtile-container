@@ -1,0 +1,17 @@
+top_module: tt_um_micro_tiles_r2d0
+title: "Pin plan r2, d0 container"
+shuttle: ttsky26e
+pdk: sky130A
+slots: [[0, 0], [90.62, 0], [0, 51.68], [90.62, 51.68]]
+connect_uio: false
+gate: [ui_in]
+config: {IGNORE_DISCONNECTED_MODULES: [tt_um_micro_r2_d0b, tt_um_micro_r2_d0a, tt_um_micro_r2_d0c, tt_um_micro_r2_d0d]}
+micro_tiles:
+  - repo: ttcodebot/ttsky-microtile   # r2-d0b
+    run: 45479684831
+  - repo: ttcodebot/ttsky-microtile   # r2-d0a
+    run: 45479681769
+  - repo: ttcodebot/ttsky-microtile   # r2-d0c
+    run: 45479684067
+  - repo: ttcodebot/ttsky-microtile   # r2-d0d
+    run: 45479682770
