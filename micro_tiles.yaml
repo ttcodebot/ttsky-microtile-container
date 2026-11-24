@@ -1,0 +1,15 @@
+top_module: tt_um_micro_tiles_io6_ng
+title: "Micro tiles with 6 uio pins and a direction register"
+shuttle: ttsky26e
+pdk: sky130A
+slots: [[0, 0], [90.62, 0], [0, 51.68], [90.62, 51.68]]
+micro_tiles:
+  - repo: ttcodebot/ttsky-microtile
+    run: 45471264106
+  - repo: ttcodebot/ttsky-microtile
+    run: 45471263649
+  - repo: ttcodebot/ttsky-microtile
+    run: 45471264480
+  - repo: ttcodebot/ttsky-microtile
+    run: 45471264031
+gate: []
