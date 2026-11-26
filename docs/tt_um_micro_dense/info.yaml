@@ -3,7 +3,7 @@ project:
   title:        "Micro tile capacity test"
   author:       "Tiny Tapeout"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Synthetic design that fills 82% of a micro tile"
+  description:  "Synthetic micro tile capacity test, 9 stages and 2 extra bits"
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
 

@@ -10,7 +10,7 @@
       "description": "Micro tile test module: 8-bit counter / input mirror",
       "clock_hz": 0,
       "repo": "https://github.com/ttcodebot/ttsky-microtile",
-      "commit": "1922b88607420f1683cc99f89e5543238ceafa46",
+      "commit": "d4753084b2902a3a004e54315f50feea42b30a1a",
       "pinout": {
         "ui[0]": "in[0]",
         "ui[1]": "in[1]",
@@ -35,10 +35,10 @@
       "title": "Micro tile capacity test",
       "author": "Tiny Tapeout",
       "discord": "",
-      "description": "Synthetic design that fills 82% of a micro tile",
+      "description": "Synthetic micro tile capacity test, 9 stages and 2 extra bits",
       "clock_hz": 0,
       "repo": "https://github.com/ttcodebot/ttsky-microtile",
-      "commit": "3207aed00fd590ea5a6554e78aa45c6d3d6b79be",
+      "commit": "909975958b7c18df16b6b02f9ee79a80028c357e",
       "pinout": {
         "ui[0]": "mix[0]",
         "ui[1]": "mix[1]",
@@ -66,7 +66,7 @@
       "description": "A Tiny Tapeout Wokwi project hardened as a micro tile",
       "clock_hz": 0,
       "repo": "https://github.com/ttcodebot/ttsky-microtile",
-      "commit": "90d7169e66844f0c48ec7d77d3e761e9d1e47cb9",
+      "commit": "88df9e53350da243d6017b7bcf09e0f3a0736d07",
       "pinout": {
         "ui[0]": "in[0]",
         "ui[1]": "in[1]",
@@ -94,7 +94,7 @@
       "description": "A Tiny Tapeout Wokwi project hardened as a micro tile",
       "clock_hz": 0,
       "repo": "https://github.com/ttcodebot/ttsky-microtile",
-      "commit": "87b3ba35854c6e3db34897c3b126349b8297ef10",
+      "commit": "0b714cd31d94f4519d1bed1446d6e2316296679f",
       "pinout": {
         "ui[0]": "in[0]",
         "ui[1]": "in[1]",

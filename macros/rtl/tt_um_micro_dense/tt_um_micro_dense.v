@@ -1,5 +1,5 @@
 /*
- * Synthetic micro tile capacity test: 5 stages plus 5 extra bits, 25 flip-flops.
+ * Synthetic micro tile capacity test: 9 stages plus 2 extra bits, 38 flip-flops.
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -12,12 +12,12 @@ module tt_um_micro_dense (
     input  wire       rst_n    // reset_n - low to reset
 );
 
-  localparam N = 5;
+  localparam N = 9;
 
   reg [3:0] s[0:N-1];
   wire [7:0] fb = {s[N-1], s[N-2]} ^ ui_in;
 
-  localparam E = 5;
+  localparam E = 2;
   reg [E-1:0] x;
 
   integer i;
