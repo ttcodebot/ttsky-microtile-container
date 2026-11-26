@@ -11,3 +11,7 @@ test/sim_build
 test/__pycache__/
 test/results.xml
 test/gate_level_netlist.v
+test/designer/sim_build
+test/designer/results_slot*.xml
+test/designer/frame.png
+__pycache__/

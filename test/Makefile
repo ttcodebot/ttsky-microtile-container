@@ -12,6 +12,13 @@ PROJECT_SOURCES = project.v
 MACROS_DIR = $(PWD)/../macros
 include micro_tiles.mk
 
+# The reference model: the container RTL and the micro tile RTL (from the micro tile
+# repositories), with all modules renamed to ref_*. The testbench runs it next to the design
+# under test and compares the outputs on every clock.
+REF_RTL = $(PWD)/sim_build/ref_rtl.v
+$(shell mkdir -p $(PWD)/sim_build && python3 $(PWD)/make_ref.py $(REF_RTL) $(addprefix $(SRC_DIR)/,$(PROJECT_SOURCES)) $(MACROS_RTL))
+VERILOG_SOURCES += $(REF_RTL)
+
 ifneq ($(GATES),yes)
 
 # RTL simulation:
@@ -21,7 +28,7 @@ VERILOG_SOURCES += $(MACROS_RTL)
 
 else
 
-# Gate level simulation:
+# Gate level simulation: the container netlist plus the powered netlists of the micro tiles
 SIM_BUILD				= sim_build/gl
 COMPILE_ARGS    += -DGL_TEST
 COMPILE_ARGS    += -DFUNCTIONAL
@@ -40,6 +47,7 @@ endif
 # Allow sharing configuration between design and testbench via `include`:
 COMPILE_ARGS 		+= -I$(SRC_DIR)
 COMPILE_ARGS 		+= -DTOP_MODULE=$(TOP_MODULE)
+COMPILE_ARGS 		+= -DREF_TOP_MODULE=ref_$(TOP_MODULE)
 
 # Include the testbench sources:
 VERILOG_SOURCES += $(PWD)/tb.v

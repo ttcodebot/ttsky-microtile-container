@@ -24,9 +24,9 @@ jobs:
       - name: Check micro tile power connectivity
         run: >
           python test/trace_power.py
-          runs/wokwi/final/gds/tt_um_micro_tiles_group_1.gds
-          runs/wokwi/final/lef/tt_um_micro_tiles_group_1.lef
-          tt_um_micro_tiles_group_1 tt_um_
+          runs/wokwi/final/gds/tt_um_micro_tiles_ttsky26e_1.gds
+          runs/wokwi/final/lef/tt_um_micro_tiles_ttsky26e_1.lef
+          tt_um_micro_tiles_ttsky26e_1 tt_um_ 4
 
   precheck:
     needs: gds
@@ -46,6 +46,63 @@ jobs:
 
       - name: GL test
         uses: TinyTapeout/tt-gds-action/gl_test@ttsky26e
+
+  # Each micro tile's own test, run on the container netlist with that micro tile selected
+  # (test/designer). Same setup as the gl_test action.
+  designer_gl_test:
+    needs: gds
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        slot: [0, 1, 2, 3]
+    env:
+      PDK_ROOT: /home/runner/pdk
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v6
+
+      - name: Download GDS artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: tt_submission
+
+      - name: Install sky130A PDK
+        uses: TinyTapeout/ciel-action@v1
+        with:
+          pdk_name: sky130A
+          pdk_version: 8afc8346a57fe1ab7934ba5a6056ea8b43078e71
+          pdk_root: /home/runner/pdk
+
+      - name: Setup python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - name: Install Python packages
+        run: pip install -r test/requirements.txt
+
+      - name: Install iverilog
+        run: |
+          wget https://github.com/TinyTapeout/iverilog/releases/download/v13.0/iverilog_13.0-1_amd64.deb
+          sudo apt-get update -y
+          sudo apt-get install -y ./iverilog_13.0-1_amd64.deb
+
+      - name: Run the micro tile's own test through the container
+        run: |
+          cp tt_submission/tt_um_micro_tiles_ttsky26e_1.v test/gate_level_netlist.v
+          cd test/designer
+          make GATES=yes SLOT=${{ matrix.slot }}
+          python -m cocotb_tools.check_results results_slot${{ matrix.slot }}.xml
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: designer_gl_test_slot${{ matrix.slot }}
+          path: |
+            test/designer/results_slot${{ matrix.slot }}.xml
+            test/designer/*.png
 
   viewer:
     needs: gds

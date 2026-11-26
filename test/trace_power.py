@@ -11,7 +11,7 @@ It fails unless, in every micro tile, every standard cell rail (a met1 shape tha
 core of the micro tile) is reached by exactly one of the two nets, and both nets get there
 through via3 cuts inside the micro tile.
 
-Usage: trace_power.py <container gds> <container lef> <top cell> <micro tile cell prefix>
+Usage: trace_power.py <container gds> <container lef> <top cell> <micro tile cell prefix> [<expected micro tiles>]
 """
 
 import re
@@ -20,6 +20,7 @@ import sys
 import klayout.db as pya
 
 gds, lef, top_name, macro_prefix = sys.argv[1:5]
+expected = int(sys.argv[5]) if len(sys.argv) > 5 else None
 
 # sky130 GDS layers
 LAYERS = {
@@ -128,6 +129,9 @@ for inst in top.each_inst():
 
 if micro_tiles == 0:
     print(f"ERROR: no {macro_prefix}* instances found in {top_name}")
+    ok = False
+if expected is not None and micro_tiles != expected:
+    print(f"ERROR: {micro_tiles} {macro_prefix}* instances in {top_name}, expected {expected}")
     ok = False
 
 print("PASS: every micro tile rail is connected to the container's power pins" if ok else "FAIL")

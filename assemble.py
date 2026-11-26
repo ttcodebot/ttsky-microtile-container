@@ -125,24 +125,60 @@ with open("subprojects.json", "w") as f:
 rows = "\n".join(
     f"| {e['index']} | [{e['sub']['title']}]({e['macro']}/info.md) | {e['sub']['author']} | `{e['macro']}` |" for e in entries
 )
+
+
+def clock_text(hz):
+    if not hz:
+        return "not applicable"
+    return f"{hz / 1e6:g} MHz" if hz >= 1e6 else f"{hz / 1e3:g} kHz"
+
+
+def tile_section(e):
+    sub = e["sub"]
+    repo = sub["repo"]
+    commit = sub["commit"]
+    pins = "\n".join(
+        f"| {i} | {sub['pinout'][f'ui[{i}]'] or '-'} | {sub['pinout'][f'uo[{i}]'] or '-'} |" for i in range(8)
+    )
+    return f"""### {e['index']}: {sub['title']}
+
+- Select: `uio_in[1:0] = {e['index']}` ({e['index']:02b})
+- Author: {sub['author']}
+- Macro: `{e['macro']}`
+- Repository: <{repo}>, commit [`{commit[:7]}`]({repo}/tree/{commit})
+- Clock: {clock_text(sub['clock_hz'])}
+- {sub['description']}
+
+| Pin | `ui_in` | `uo_out` |
+| --- | ------- | -------- |
+{pins}
+
+Full documentation: [{e['macro']}/info.md]({e['macro']}/info.md)
+"""
+
+
+sections = "\n".join(tile_section(e) for e in entries)
 pathlib.Path("docs/info.md").write_text(
     f"""## How it works
 
 Four micro tile projects, combined into a single Tiny Tapeout tile.
 
-Each micro tile is a separately hardened 70.38 x 51.68 um macro with a reduced interface: `clk`, `rst_n`, `ui_in[7:0]` and `uo_out[7:0]`. The container places four of them, and muxes the tile's pins to the selected one. The other micro tiles get no clock and are held in reset.
+Each micro tile is a separately hardened 70.38 x 51.68 um macro with a reduced interface: `clk`, `rst_n`, `ui_in[7:0]` and `uo_out[7:0]`. The container places four of them and connects the tile's pins to the one selected with `uio_in[1:0]`. The other micro tiles get no clock, no inputs and a low `rst_n`, so they stop. `uio` are always inputs (`uio_oe = 0`); `uio_in[7:2]` are not used.
 
-| `uio[1:0]` | Micro tile | Author | Macro |
-| ---------- | ---------- | ------ | ----- |
+| `uio_in[1:0]` | Micro tile | Author | Macro |
+| ------------- | ---------- | ------ | ----- |
 {rows}
 
+## Micro tiles
+
+{sections}
 ## How to test
 
-Select a micro tile with `uio[1:0]`, then follow the instructions of that micro tile.
+Set `uio_in[1:0]` to the select value of a micro tile, then follow the instructions of that micro tile: `ui_in`, `uo_out`, `clk` and `rst_n` are its pins. Set the clock to the frequency that micro tile wants. A micro tile that is selected again continues from where it stopped (its clock was stopped), so reset it after selecting it.
 
 ## External hardware
 
-None
+See each micro tile.
 """
 )
 

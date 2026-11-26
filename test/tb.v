@@ -1,8 +1,9 @@
 `default_nettype none
 `timescale 1ns / 1ps
 
-/* This testbench just instantiates the module and makes some convenient wires
-   that can be driven / tested by the cocotb test.py.
+/* The container under test (RTL, or the gate level netlist with the micro tile netlists), and
+   next to it the reference model: the container RTL with the micro tile RTL from their
+   repositories (modules renamed to ref_*). Both get the same inputs; test.py compares them.
 */
 module tb ();
 
@@ -22,6 +23,9 @@ module tb ();
   wire [7:0] uo_out;
   wire [7:0] uio_out;
   wire [7:0] uio_oe;
+  wire [7:0] ref_uo_out;
+  wire [7:0] ref_uio_out;
+  wire [7:0] ref_uio_oe;
 `ifdef GL_TEST
   wire VPWR = 1'b1;
   wire VGND = 1'b0;
@@ -43,6 +47,17 @@ module tb ();
       .ena    (ena),      // enable - goes high when design is selected
       .clk    (clk),      // clock
       .rst_n  (rst_n)     // not reset
+  );
+
+  `REF_TOP_MODULE ref_project (
+      .ui_in  (ui_in),
+      .uo_out (ref_uo_out),
+      .uio_in (uio_in),
+      .uio_out(ref_uio_out),
+      .uio_oe (ref_uio_oe),
+      .ena    (ena),
+      .clk    (clk),
+      .rst_n  (rst_n)
   );
 
 endmodule

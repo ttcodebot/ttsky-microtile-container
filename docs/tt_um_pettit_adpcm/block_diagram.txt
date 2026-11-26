@@ -1,0 +1,43 @@
+                                                                                     
+  ui[3:0] CODE ---------------------------------------------------------+              
+                                                                        v sign, m[2:0] 
+                     +----------------+   +-----------------+   +---------------+      
+  ui[4] STROBE ----->|  3-flop sync   +-->|    sequencer    |   |  pass decode  |    
+                     |  rising edge   |   |  passes 1 to 5  +-->|  k, en, sub   |    
+                 {py}|  pending flag  |   |      {py}       |   |     {py}      |    
+                     +----------------+   +-----------------+   +-------+-------+    
+                                        +-------------------------------*            
+                                        v k                             v en, sub 
+           /--------------\      +-------------+                +---------------+ 
+     +---->|     step     +----->|     tap     |         b      |               |
+     |     | 16-bit shift |      |  step >> k  +--------------->|  full adder   |
+     | {pb}|   register   |      |    {pr}     |                |     1 bit     | sum
+     |     \--------------/      +-------------+                |   and carry   +----+
+     |     /--------------\                                     |     flop      |    |
+     |     |     pred     |{pb}          a                      |     {pr}      |    |
+     *---->| 16-bit shift +------------------------------------>|               |    |
+     |     |   register   |                                     |               |    |
+     |     \------+-------/           one bit per clock         +---------------+    |
+     |            |                into the shift register                           |
+     +------------|------------------------------------------------------------------+
+                  |   +---------------+           +------------------------+        
+                  |   |    {pt}       +---------->|    PWM Comparator      |                         
+      pred[15:11] *-->| ^duty latch^  |           |    {pt}                +------> uo[7] PWM, 1 MHz           
+                  |   |   ^5 bits^    |    +----->|  ramp <= duty + carry  |                                   
+                  |   +---------------+    |      +------------------------+                                   
+                  |                        |                   ^                                                
+                  |   +---------------+    |   +---------------+---------------+                   
+                  |   |     {pt}      |    |   |  ramp: 5-bit counter @32MHz   |                                       
+       pred[10:6] +-->| ^sigma-delta^ +----+   |  [3:0] = bit being processed  |                                   
+                      |  ^5-bit acc^  | carry  |   {pw}                        |                                       
+                      +---------------+        +-------------------------------+                                       
+                                                                                                                                     
+                            <h4>Micro ADPCM decoder Block Diagram</h4>
+                                                                                                                                     
+                                                                                                                                     
+{:FILE theme light scale 1.2 font-size 12}
+{:pb blend cC0C0FF cE0E0FF text cBLK line cBLK border cBLK}
+{:py blend cE0E090 cFFFFB0 text cBLK line cBLK border cBLK}
+{:pr blend cFFC0C0 cFFE8E8 text cBLK line cBLK border cBLK}
+{:pt blend cE2C49C cFADCB4 text cBLK line cBLK border cBLK}
+{:pw blend cE8E8E8 cF8F8F8 text cBLK line cBLK border cBLK}

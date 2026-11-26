@@ -9,7 +9,7 @@
 
 // Container for four micro tile projects. uio_in[1:0] selects the active one:
 // only the selected micro tile gets clk, rst_n and ui_in, and drives uo_out.
-module tt_um_micro_tiles_group_1 (
+module tt_um_micro_tiles_ttsky26e_1 (
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
     input  wire [7:0] uio_in,   // IOs: Input path
@@ -27,28 +27,28 @@ module tt_um_micro_tiles_group_1 (
   assign uio_out = 0;
   assign uio_oe  = 0;
 
-  tt_um_micro_test proj1 (
+  tt_um_pettit_micro proj1 (
       .rst_n (sel == 0 ? rst_n : 1'b0),
       .clk   (sel == 0 ? clk : 1'b0),
       .ui_in (sel == 0 ? ui_in : 8'h00),
       .uo_out(uo_out_proj[0])
   );
 
-  tt_um_micro_dense proj2 (
+  tt_um_MaligayangPasko proj2 (
       .rst_n (sel == 1 ? rst_n : 1'b0),
       .clk   (sel == 1 ? clk : 1'b0),
       .ui_in (sel == 1 ? ui_in : 8'h00),
       .uo_out(uo_out_proj[1])
   );
 
-  tt_um_wokwi_463380823859050497 proj3 (
+  tt_um_pettit_adpcm proj3 (
       .rst_n (sel == 2 ? rst_n : 1'b0),
       .clk   (sel == 2 ? clk : 1'b0),
       .ui_in (sel == 2 ? ui_in : 8'h00),
       .uo_out(uo_out_proj[2])
   );
 
-  tt_um_wokwi_459285910800527361 proj4 (
+  tt_um_xy_spirograph proj4 (
       .rst_n (sel == 3 ? rst_n : 1'b0),
       .clk   (sel == 3 ? clk : 1'b0),
       .ui_in (sel == 3 ? ui_in : 8'h00),

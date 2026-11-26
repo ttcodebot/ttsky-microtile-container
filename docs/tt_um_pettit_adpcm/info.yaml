@@ -1,0 +1,56 @@
+# Tiny Tapeout project information
+project:
+  title:        "Micro ADPCM (streaming audio decoder in a micro tile)"      # Project title
+  author:       "Ken Pettit"      # Your name
+  discord:      "busy_courgette_50064"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "A bit-serial 4-bit ADPCM decoder with 1 MHz PWM, fed by the host one code a sample"      # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     32000000       # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "micro"          # micro: a quarter-size experimental tile (clk, rst_n, ui_in, uo_out only)
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_pettit_adpcm"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "tt_um_pettit_adpcm.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+# This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
+pinout:
+  # Inputs
+  ui[0]: "CODE[0]"
+  ui[1]: "CODE[1]"
+  ui[2]: "CODE[2]"
+  ui[3]: "CODE[3] (sign)"
+  ui[4]: "STROBE (rising edge: a new code)"
+  ui[5]: ""
+  ui[6]: ""
+  ui[7]: ""
+
+  # Outputs
+  uo[0]: "DUTY[0]"
+  uo[1]: "DUTY[1]"
+  uo[2]: "DUTY[2]"
+  uo[3]: "DUTY[3]"
+  uo[4]: "DUTY[4]"
+  uo[5]: "BUSY"
+  uo[6]: "PWM audio, inverted"
+  uo[7]: "PWM audio (1 MHz)"
+
+  # Bidirectional pins
+  uio[0]: ""
+  uio[1]: ""
+  uio[2]: ""
+  uio[3]: ""
+  uio[4]: ""
+  uio[5]: ""
+  uio[6]: ""
+  uio[7]: ""
+
+# Do not change!
+yaml_version: 6
