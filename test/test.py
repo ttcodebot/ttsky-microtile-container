@@ -6,12 +6,15 @@ four micro tile netlists) runs next to a reference model made of the container R
 of each micro tile, taken unchanged from its repository (tb.v, make_ref.py). Every clock, every
 output bit that the reference knows (0 or 1) must match. Inputs and resets are random (seeded).
 
-  test_slots      each micro tile in turn: select it, random ui_in, random resets
-  test_switching  random selection changes, with random ui_in and resets
+  test_slots      each micro tile in turn: select it, random ui_in, random resets (RESETS clocks),
+                  then a long run without resets (LONG clocks, more than one 640x480 VGA frame)
+  test_switching  random selection changes, with random ui_in and resets (SWITCH clocks)
   test_isolation  the outputs of the micro tiles that are not selected are forced to random
                   values: uo_out must not change; their clk, rst_n and ui_in must stay 0
+                  (ISOLATION clocks per slot)
 
-SEED (default 2026) and CYCLES (clocks per slot, default 20000) from the environment.
+From the environment: SEED (default 2026), RESETS (50000), LONG (450000), SWITCH (100000),
+ISOLATION (5000).
 """
 
 import os
@@ -23,7 +26,10 @@ from cocotb.handle import Force, Release
 from cocotb.triggers import ClockCycles, FallingEdge, RisingEdge, Timer
 
 SEED = int(os.environ.get("SEED", "2026"))
-CYCLES = int(os.environ.get("CYCLES", "20000"))
+RESETS = int(os.environ.get("RESETS", "50000"))
+LONG = int(os.environ.get("LONG", "450000"))
+SWITCH = int(os.environ.get("SWITCH", "100000"))
+ISOLATION = int(os.environ.get("ISOLATION", "5000"))
 PERIOD_NS = 100
 SLOTS = 4
 INSTANCES = ["proj1", "proj2", "proj3", "proj4"]  # slot i is proj<i+1> (src/project.v)
@@ -39,6 +45,9 @@ class Stats:
         self.bits = 0  # bits compared
         self.mismatches = 0  # clocks with at least one wrong bit
         self.logged = 0
+        self.values = set()  # distinct reference outputs
+        self.prev = None
+        self.vsync = 0  # falling edges of uo_out[3] (VSYNC of the VGA micro tiles): frames
 
     def check(self, where=""):
         dut = self.dut
@@ -48,6 +57,10 @@ class Stats:
         known = [i for i, r in enumerate(ref) if r in "01"]
         self.bits += len(known)
         self.full += len(known) == 8
+        self.values.add(ref)
+        if self.prev is not None and self.prev[4] == "1" and ref[4] == "0":
+            self.vsync += 1
+        self.prev = ref
         bad = [i for i in known if got[i] != ref[i]]
         if str(dut.uio_oe.value) != "00000000" or str(dut.uio_out.value) != "00000000":
             bad.append("uio")
@@ -63,16 +76,19 @@ class Stats:
     def report(self):
         self.dut._log.info(
             f"{self.name}: {self.cycles} clocks compared ({self.full} with all 8 reference bits known), "
-            f"{self.bits} bits, {self.mismatches} mismatching clocks"
+            f"{self.bits} bits, {self.mismatches} mismatching clocks; "
+            f"{len(self.values)} distinct outputs, {self.vsync} falling edges on uo_out[3]"
         )
 
 
 class Stimulus:
     """Random ui_in that holds each value for a random number of clocks (so slow inputs such as
-    strobes and mode pins are exercised too), and random resets of 1 to 40 clocks."""
+    strobes and mode pins are exercised too), and random resets of 1 to 40 clocks, on average
+    one every 1 / reset_rate clocks."""
 
-    def __init__(self, rng):
+    def __init__(self, rng, reset_rate=1 / 3000):
         self.rng = rng
+        self.reset_rate = reset_rate
         self.ui = 0
         self.hold = 0
         self.reset = 0
@@ -83,7 +99,7 @@ class Stimulus:
             self.ui = rng.randrange(256)
             self.hold = rng.choice([1, 1, 2, 4, 16, 64, 256, 1024])
         self.hold -= 1
-        if self.reset == 0 and rng.random() < 1 / 3000:
+        if self.reset == 0 and rng.random() < self.reset_rate:
             self.reset = rng.randint(1, 40)
         rst_n = 0 if self.reset else 1
         self.reset = max(0, self.reset - 1)
@@ -121,14 +137,16 @@ async def test_slots(dut):
         await select(dut, rng, slot)
         stats = Stats(dut, f"slot {slot} ({NAMES[slot]})")
         stim = Stimulus(rng)
-        for n in range(CYCLES):
+        for n in range(RESETS + LONG):
+            if n == RESETS:  # the long run: no more resets
+                stim.reset_rate = 0
             await FallingEdge(dut.clk)
             stats.check()
             stim.step(dut)
             if n % 997 == 0:  # the unused uio_in bits must not matter
                 dut.uio_in.value = slot | (rng.randrange(64) << 2)
         stats.report()
-        if stats.mismatches or stats.full < CYCLES // 2:
+        if stats.mismatches or stats.full < (RESETS + LONG) // 2:
             failed.append(slot)
     assert not failed, f"slots with mismatches or too few known reference outputs: {failed}"
 
@@ -146,7 +164,7 @@ async def test_switching(dut):
     stim = Stimulus(rng)
     slot, switches, left = 0, 0, 0
     seen = set()
-    for _ in range(2 * CYCLES):
+    for _ in range(SWITCH):
         await FallingEdge(dut.clk)
         stats.check(f"(slot {slot})")
         if left == 0:
@@ -161,7 +179,7 @@ async def test_switching(dut):
     dut._log.info(f"{switches} selections, slots seen: {sorted(seen)}")
     assert seen == set(range(SLOTS))
     assert stats.mismatches == 0
-    assert stats.full > CYCLES
+    assert stats.full > SWITCH // 2
 
 
 @cocotb.test()
@@ -176,7 +194,7 @@ async def test_isolation(dut):
         stats = Stats(dut, f"isolation, slot {slot} selected")
         stim = Stimulus(rng)
         zeros_ok = True
-        for n in range(CYCLES // 4):
+        for n in range(ISOLATION):
             # While clk is high: the micro tiles that are not selected see clk, rst_n, ui_in = 0
             await RisingEdge(dut.clk)
             await Timer(PERIOD_NS // 4, unit="ns")

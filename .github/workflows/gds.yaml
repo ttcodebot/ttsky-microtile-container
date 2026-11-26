@@ -28,6 +28,15 @@ jobs:
           runs/wokwi/final/lef/tt_um_micro_tiles_ttsky26e_1.lef
           tt_um_micro_tiles_ttsky26e_1 tt_um_ 4
 
+      # The shuttle merges all GDS by cell name: only the container, the micro tiles and
+      # unmodified standard cells (or Magic's prefixed copies of them) may be in the GDS
+      - name: Check cell names
+        run: >
+          python test/check_cells.py
+          runs/wokwi/final/gds/tt_um_micro_tiles_ttsky26e_1.gds tt_um_micro_tiles_ttsky26e_1
+          $HOME/.ciel/ciel/sky130/versions/$(jq -r .PDK_VERSION tt_submission/pdk.json)/sky130A/libs.ref/sky130_fd_sc_hd/gds/sky130_fd_sc_hd.gds
+          $(ls macros/*.lef | xargs -n1 basename | sed 's/\.lef$//')
+
   precheck:
     needs: gds
     runs-on: ubuntu-24.04
