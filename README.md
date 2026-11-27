@@ -11,17 +11,17 @@ An experimental Tiny Tapeout 1x1 project that holds four _micro tiles_: small, s
 
 The tile is 161.00 x 111.52 um. Each micro tile is 70.38 x 51.68 um.
 
-| Instance | Macro               | Location (um)  | Orientation |
-| -------- | ------------------- | -------------- | ----------- |
-| `proj1`  | `tt_um_micro_test`  | (0, 0)         | N           |
-| `proj2`  | `tt_um_micro_proj2` | (90.62, 0)     | FN          |
-| `proj3`  | `tt_um_micro_proj3` | (0, 51.68)     | N           |
-| `proj4`  | `tt_um_micro_proj4` | (90.62, 51.68) | FN          |
+| Instance | Macro                | Location (um)  | Orientation | Micro tile outline (um) |
+| -------- | -------------------- | -------------- | ----------- | ----------------------- |
+| `proj1`  | `tt_micro_tile_slot` | (0, 0)         | N           | (0, 0)                  |
+| `proj2`  | `tt_micro_tile_slot` | (89.58, 0)     | FN          | (90.62, 0)              |
+| `proj3`  | `tt_micro_tile_slot` | (0, 53.04)     | N           | (0, 53.04)              |
+| `proj4`  | `tt_micro_tile_slot` | (89.58, 53.04) | FN          | (90.62, 53.04)          |
 
-- The micro tiles sit in the corners. Their own margins overlap the margins of the container, so their standard cell rows line up with the rows of the container.
-- The signal pins of a micro tile are on its east edge. The right column is mirrored (FN), so all pins face the 20.24 um wide channel in the middle of the tile.
+- The slot macro (`micro_container.py placeholder` in tt-support-tools) is the micro tile outline plus 1.04 um beyond its pin edge for the jumpers; its origin is the micro tile's.
+- The right column is mirrored (FN), so all pins face the channel in the middle of the tile.
+- DRC by construction: inside a micro tile's outline the container draws nothing on li1-met3 but copies of the pins (and the power vias, inside the power stripes). Each pin is extended straight out of the slot, and the jumper (via3, met4 bridge, via3, met3 landing pad) starts 0.4 um outside it. Container li1/met1/met2/met3 keep 0.17/0.28/0.28/0.4 um (the wide-metal spacing) from every slot outline (`ROUTING_OBSTRUCTIONS`, slot LEF), and the two slots of a column are 1.36 um apart (more than nwell.2a, 1.27 um). So any micro tile that is DRC clean on its own, with its pins and power stripes at the template positions, is DRC clean in the container.
 - The mux logic is placed in the channel and in the row above the micro tiles, right below the pins of the container.
-- met1, met2 and met3 over the micro tiles belong to the micro tiles (`ROUTING_OBSTRUCTIONS`), except for the 1 um strip with their signal pins. The container routes in the channel, in the 8 um strip at the top, and on met4.
 
 ## Power
 

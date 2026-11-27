@@ -1,5 +1,5 @@
 {
-  "//": "Generic micro tile container (tools branch microtile-antenna, micro_container/config.json) as a 1x1 project",
+  "//": "Generic micro tile container: a 1x1 project around four slots (micro_container.py placeholder writes macros/tt_micro_tile_slot.*)",
   "PL_TARGET_DENSITY_PCT": 60,
   "CLOCK_PERIOD": 20,
   "CLOCK_PORT": "clk",
@@ -35,7 +35,7 @@
         },
         "proj2": {
           "location": [
-            90.62,
+            89.58,
             0
           ],
           "orientation": "FN"
@@ -43,14 +43,14 @@
         "proj3": {
           "location": [
             0,
-            51.68
+            53.04
           ],
           "orientation": "N"
         },
         "proj4": {
           "location": [
-            90.62,
-            51.68
+            89.58,
+            53.04
           ],
           "orientation": "FN"
         }
@@ -66,7 +66,7 @@
       ]
     }
   },
-  "FP_MACRO_HORIZONTAL_HALO": 1.84,
+  "FP_MACRO_HORIZONTAL_HALO": 0.8,
   "FP_MACRO_VERTICAL_HALO": 1,
   "PDN_HORIZONTAL_HALO": 0.92,
   "PDN_VERTICAL_HALO": 0.5,
@@ -79,11 +79,17 @@
   "FP_PDN_VOFFSET": 7.36,
   "FP_PDN_VSPACING": 9.44,
   "ROUTING_OBSTRUCTIONS": [
-    "met1 0 0 69.38 103.36",
-    "met2 0 0 69.38 103.36",
-    "met3 0 0 69.38 103.36",
-    "met1 91.62 0 161 103.36",
-    "met2 91.62 0 161 103.36",
-    "met3 91.62 0 161 103.36"
+    "li1 0 0 71.42 105.12",
+    "li1 89.58 0 161 105.12",
+    "met1 0 0 71.42 105.12",
+    "met1 89.58 0 161 105.12",
+    "met2 0 0 71.42 105.12",
+    "met2 89.58 0 161 105.12",
+    "met3 0 0 70.78 105.12",
+    "met3 70.78 51.68 71.42 53.04",
+    "met3 70.78 104.72 71.42 105.12",
+    "met3 90.22 0 161 105.12",
+    "met3 89.58 51.68 90.22 53.04",
+    "met3 89.58 104.72 90.22 105.12"
   ]
 }
