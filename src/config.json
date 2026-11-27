@@ -81,5 +81,8 @@
     "met1 91.62 0 161 103.36",
     "met2 91.62 0 161 103.36",
     "met3 91.62 0 161 103.36"
+  ],
+  "IGNORE_DISCONNECTED_MODULES": [
+    "tt_micro_tile_slot"
   ]
 }
