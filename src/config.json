@@ -1,5 +1,5 @@
 {
-  "//": "Generic micro tile container (tools branch microtile-antenna, micro_container/config.json) as a 1x1 project",
+  "//": "Generic micro tile container as a 1x1 project: met4 power stripes over the slots and no power connection to them (the tools draw the vias onto each micro tile)",
   "PL_TARGET_DENSITY_PCT": 60,
   "CLOCK_PERIOD": 20,
   "CLOCK_PORT": "clk",
@@ -70,10 +70,6 @@
   "FP_MACRO_VERTICAL_HALO": 1,
   "PDN_HORIZONTAL_HALO": 0.92,
   "PDN_VERTICAL_HALO": 0.5,
-  "PDN_HORIZONTAL_LAYER": "met3",
-  "PDN_MACRO_CONNECTIONS": [
-    "proj[1-4] VPWR VGND VPWR VGND"
-  ],
   "FP_PDN_VPITCH": 22.08,
   "FP_PDN_VWIDTH": 1.6,
   "FP_PDN_VOFFSET": 7.36,
