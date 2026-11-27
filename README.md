@@ -15,12 +15,12 @@ The tile is 161.00 x 111.52 um. Each micro tile is 70.38 x 51.68 um.
 | -------- | -------------------- | -------------- | ----------- | ----------------------- |
 | `proj1`  | `tt_micro_tile_slot` | (0, 0)         | N           | (0, 0)                  |
 | `proj2`  | `tt_micro_tile_slot` | (89.58, 0)     | FN          | (90.62, 0)              |
-| `proj3`  | `tt_micro_tile_slot` | (0, 53.04)     | N           | (0, 53.04)              |
-| `proj4`  | `tt_micro_tile_slot` | (89.58, 53.04) | FN          | (90.62, 53.04)          |
+| `proj3`  | `tt_micro_tile_slot` | (0, 52.08)     | N           | (0, 52.08)              |
+| `proj4`  | `tt_micro_tile_slot` | (89.58, 52.08) | FN          | (90.62, 52.08)          |
 
 - The slot macro (`micro_container.py placeholder` in tt-support-tools) is the micro tile outline plus 1.04 um beyond its pin edge for the jumpers; its origin is the micro tile's.
 - The right column is mirrored (FN), so all pins face the channel in the middle of the tile.
-- DRC by construction: inside a micro tile's outline the container draws nothing on li1-met3 but copies of the pins (and the power vias, inside the power stripes). Each pin is extended straight out of the slot, and the jumper (via3, met4 bridge, via3, met3 landing pad) starts 0.4 um outside it. Container li1/met1/met2/met3 keep 0.17/0.28/0.28/0.4 um (the wide-metal spacing) from every slot outline (`ROUTING_OBSTRUCTIONS`, slot LEF), and the two slots of a column are 1.36 um apart (more than nwell.2a, 1.27 um). So any micro tile that is DRC clean on its own, with its pins and power stripes at the template positions, is DRC clean in the container.
+- DRC by construction: inside a micro tile's outline the container draws nothing on li1-met3 but copies of the pins (and the power vias, inside the power stripes). Each pin is extended straight out of the slot, and the jumper (via3, met4 bridge, via3, met3 landing pad) starts 0.4 um outside it. Container li1/met1/met2/met3 keep 0.17/0.28/0.28/0.4 um (the wide-metal spacing) from every slot outline (`ROUTING_OBSTRUCTIONS`, slot LEF), and the two slots of a column are 0.4 um apart (the largest metal spacing; FEOL: nwell.2a needs 1.27 um, so micro tiles keep nwell 0.87 um from their top and bottom edges, which the flow's core margins give). So any micro tile that is DRC clean on its own, with its pins and power stripes at the template positions, is DRC clean in the container.
 - The mux logic is placed in the channel and in the row above the micro tiles, right below the pins of the container.
 
 ## Power
